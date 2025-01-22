@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Js-calc-diagnostika</title>
 </head>
+
 <body>
     <h1>Calculator</h1>
     <input type="number" id="01">
@@ -21,26 +23,39 @@
     const output = document.getElementById('output')
 
     const operators = {
-        '+': (a,b) => a + b,
-        '-': (a,b) => a - b,
-        '*': (a,b) => a * b,
-        '/': (a,b) => a / b
+        '+': (a, b) => a + b,
+        '-': (a, b) => a - b,
+        '*': (a, b) => a * b,
+        '/': (a, b) => a / b
     }
 
-    calculateNums = (x,y,o) => {
-        if (x !== null || y !== null){
-            if (o in operators){
-                return operators[o](x,y)
-            }
+    calculateNums = (x, y, o) => {
+        if (isNaN(x) || isNaN(y)) {
+            output.style.color = "red";
+            output.innerHTML = "Error: Invalid input";
+            return null;
         }
+
+        if (!(o in operators)) {
+            output.style.color = "red";
+            output.innerHTML = "Error: Invalid operator";
+            return null;
+        }
+
+        return operators[o](x, y);
     }
 
     btn.addEventListener('click', updateFunc = () => {
         x = parseFloat(num1.value)
         y = parseFloat(num2.value)
         o = op.value
-        output.innerHTML = calculateNums(x,y,o)
+        result = calculateNums(x, y, o)
+        if (result !== null) {
+            output.style.color = 'black'
+            output.innerHTML = result
+        }
     })
 
 </script>
+
 </html>
