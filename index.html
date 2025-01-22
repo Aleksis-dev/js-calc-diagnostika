@@ -26,7 +26,7 @@
         '+': (a, b) => a + b,
         '-': (a, b) => a - b,
         '*': (a, b) => a * b,
-        '/': (a, b) => a / b
+        '/': (a, b) => (a, b) !== 0 ? a / b : output.innerHTML = 'Division by 0!'
     }
 
     calculateNums = (x, y, o) => {
