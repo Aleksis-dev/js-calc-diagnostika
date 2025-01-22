@@ -10,26 +10,36 @@
     <input type="number" id="01">
     <input type="text" id="operator">
     <input type="number" id="02">
-    <p id="output"></p>
     <button id="calcButton">Calculate</button>
+    <p id="output"></p>
 </body>
 <script>
     const btn = document.getElementById('calcButton')
     const num1 = document.getElementById('01')
     const num2 = document.getElementById('02')
     const op = document.getElementById('operator')
+    const output = document.getElementById('output')
 
     const operators = {
-        '+': a + b,
-        '-': a - b,
-        '*': a * b,
-        '/': a / b
+        '+': (a,b) => a + b,
+        '-': (a,b) => a - b,
+        '*': (a,b) => a * b,
+        '/': (a,b) => a / b
     }
 
+    calculateNums = (x,y,o) => {
+        if (x !== null || y !== null){
+            if (o in operators){
+                return operators[o](x,y)
+            }
+        }
+    }
 
     btn.addEventListener('click', updateFunc = () => {
         x = parseFloat(num1.value)
         y = parseFloat(num2.value)
+        o = op.value
+        output.innerHTML = calculateNums(x,y,o)
     })
 
 </script>
